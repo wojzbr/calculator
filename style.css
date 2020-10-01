@@ -1,0 +1,50 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: 0px;
+  font-size: 0;
+}
+
+.calculator {
+  width: 216px;
+  background: black;
+  border-radius: 5px;
+  margin-left: calc(50% - 108px);
+  margin-top: 10%;
+}
+
+.screen {
+  height: 75px;
+}
+
+button {
+  font-size: 24px;
+  width: 50px;
+  height: 50px;
+  margin: 2px;
+  border-radius: 25px;
+}
+
+button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+#zero {
+  width: 104px;
+}
+
+.lightgray {
+  background: lightgray;
+}
+
+.gray {
+  color: white;
+  background: gray;
+}
+
+ .orange {
+   color: white;
+   background: orange;
+ }
