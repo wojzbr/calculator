@@ -14,8 +14,14 @@
   margin-top: 10%;
 }
 
-.screen {
+#screen {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  font-size: 50px;
+  color: white;
   height: 75px;
+  padding: 4px;
 }
 
 button {
@@ -31,17 +37,21 @@ button:focus {
   box-shadow: none;
 }
 
+button:active {
+  background: rgb(230, 230, 230);
+}
+
 #zero {
   width: 104px;
 }
 
 .lightgray {
-  background: lightgray;
+  background: rgb(172, 172, 172);
 }
 
 .gray {
   color: white;
-  background: gray;
+  background: rgb(99, 98, 98);
 }
 
  .orange {
