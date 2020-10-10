@@ -13,6 +13,7 @@ let percentageButton = document.getElementById('percentage');
 let pendingValue;
 let currentOperator;
 let currentValue;
+let isDecimalSet = false;
 
 screen.innerText = "0";
 
@@ -23,18 +24,11 @@ let updateScreen = (button) => {
   if (screen.innerText == "-0") {
     screen.innerText = "-";
   }
-
   if (!pendingValue && !currentValue && !currentOperator) {
     screen.innerText = "";
-    if (button.target.innerText == ".") {
-      screen.innerText = "0";
-    }
   }
   if (pendingValue && !currentValue && currentOperator) {
     screen.innerText = "";
-    if (button.target.innerText == ".") {
-      screen.innerText = "0";
-    }
   }
   screen.innerText += button.target.innerText;
   currentValue = screen.innerText;
@@ -46,6 +40,10 @@ let setOperator = (button) => {
     currentOperator = button.target.innerText;
     pendingValue = currentValue;
     currentValue = undefined;
+    isDecimalSet = false;
+  }
+  else if (pendingValue && currentValue && currentOperator) {
+    equals();
   }
   else {
     currentOperator = button.target.innerText;
@@ -71,6 +69,21 @@ let equals = () => {
     screen.innerText = eval(equation);
     pendingValue = eval(equation);
     currentValue = undefined;
+  }
+}
+
+let setDecimal = () => {
+  if (!isDecimalSet) {
+    if (currentValue) {
+      screen.innerText += ".";
+      currentValue = screen.innerText;
+      isDecimalSet = true;
+    }
+    if (!currentValue) {
+      screen.innerText = "0.";
+      currentValue = screen.innerText;
+      isDecimalSet = true;
+    }
   }
 }
 
@@ -120,7 +133,7 @@ clearButton.addEventListener('click', clear);
 
 equalsButton.addEventListener('click', equals);
 
-decimalButton.addEventListener('click', updateScreen);
+decimalButton.addEventListener('click', setDecimal);
 
 negativeButton.addEventListener('click', setNegative);
 
