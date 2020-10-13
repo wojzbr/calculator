@@ -88,15 +88,19 @@ let setDecimal = () => {
 }
 
 let setNegative = () => {
-  if (!currentValue) {
+  if (currentOperator && !currentValue) {
+    screen.innerText = "-0";
+    currentValue = screen.innerText;  
+  }
+  else if (!currentValue) {
     if (pendingValue) {
       if (screen.innerText.charAt(0) == "-") {
         screen.innerText = screen.innerText.substring(1);
-        pendingValue = screen.innerText;
+        currentValue = screen.innerText;
       }
-      else {
-        screen.innerText = "-" + pendingValue;
-        pendingValue = screen.innerText;  
+      else if (currentValue) {
+        screen.innerText = "-" + currentValue;
+        currentValue = screen.innerText;  
       }
     }
     else {
