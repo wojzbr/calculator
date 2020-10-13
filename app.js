@@ -24,10 +24,14 @@ let updateScreen = (button) => {
   if (screen.innerText == "-0") {
     screen.innerText = "-";
   }
-  if (!pendingValue && !currentValue && !currentOperator) {
+  else if (screen.innerText == "0" && !isDecimalSet) {
     screen.innerText = "";
   }
-  if (pendingValue && !currentValue && currentOperator) {
+
+  else if (!pendingValue && !currentValue && !currentOperator) {
+    screen.innerText = "";
+  }
+  else if (pendingValue && !currentValue && currentOperator) {
     screen.innerText = "";
   }
   screen.innerText += button.target.innerText;
@@ -64,7 +68,7 @@ let clear = () => {
 }
 
 let equals = () => {
-  if (pendingValue && currentValue) {
+  if ((pendingValue || pendingValue=="0") && currentValue) {
     let equation = `${pendingValue}${currentOperator} ${currentValue}`;
     screen.innerText = eval(equation);
     pendingValue = eval(equation);
@@ -120,8 +124,14 @@ let setNegative = () => {
 }
 
 let setPercentage = () => {
-  screen.innerText = eval(screen.innerText/100);
-  currentValue = screen.innerText;
+  if (currentValue) {
+    screen.innerText = eval(currentValue/100);
+    currentValue = screen.innerText;
+  }
+  else if (pendingValue) {
+    screen.innerText = eval(pendingValue/100);
+    pendingValue = screen.innerText;
+  }
 };
 
 //Event listeners
