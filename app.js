@@ -65,10 +65,11 @@ let clear = () => {
 
 let equals = () => {
   if (pendingValue && currentValue) {
-    let equation = `${pendingValue}${currentOperator}${currentValue}`;
+    let equation = `${pendingValue}${currentOperator} ${currentValue}`;
     screen.innerText = eval(equation);
     pendingValue = eval(equation);
     currentValue = undefined;
+    isDecimalSet = false;
   }
 }
 
