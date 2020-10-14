@@ -12,7 +12,7 @@ let percentageButton = document.getElementById('percentage');
 
 let pendingValue = "";
 let currentOperator = "";
-let currentValue = "";
+let currentValue = "0";
 let isDecimalSet = false;
 
 screen.innerText = "0";
@@ -20,6 +20,12 @@ screen.innerText = "0";
 //Callback functions
 
 let updateScreen = (button) => {
+  if (currentValue.length == 9 && !currentValue.includes('.')) {
+    return
+  };
+  if (currentValue.length == 10 && currentValue.includes('.')) {
+    return
+  };
   if (screen.innerText === "0" && button.target.innerText === "0") { // blocks from writing multiple 0s in front of the number like 0000.2 (redundant)
     return;
   }
@@ -31,6 +37,28 @@ let updateScreen = (button) => {
   }
   screen.innerText += button.target.innerText;
   currentValue = screen.innerText;
+
+  updateScreenFontSize();
+}
+
+let updateScreenFontSize = () => {
+  switch (true) {
+    case screen.innerText.length < 6:
+      screen.style.fontSize = "60px";
+      break;
+    case screen.innerText.length == 6:
+      screen.style.fontSize = "56px";
+      break;
+    case screen.innerText.length == 7:
+      screen.style.fontSize = "52px";
+      break;
+    case screen.innerText.length == 8:
+      screen.style.fontSize = "48px";
+      break;
+    case screen.innerText.length >= 9:
+      screen.style.fontSize = "44px";
+      break;
+  }
 }
 
 let setOperator = (button) => {
@@ -60,6 +88,7 @@ let equals = () => {
   if (currentOperator === "/") {
     screen.innerText = (parseFloat(pendingValue)/parseFloat(currentValue)).toString();
   }
+  updateScreenFontSize();
 }
 
 let setDecimal = () => {
@@ -76,7 +105,11 @@ let setNegative = () => {
 }
 
 let setPercentage = () => {
-
+  if (!currentValue) {
+    return;
+  }
+  currentValue = (parseFloat(currentValue)/100).toString();
+  screen.innerText = currentValue;
 }
 
 //Event listeners
