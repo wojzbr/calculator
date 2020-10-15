@@ -13,7 +13,6 @@ let percentageButton = document.getElementById('percentage');
 let pendingValue = "";
 let currentOperator = "";
 let currentValue = "0";
-let isDecimalSet = false;
 
 screen.innerText = "0";
 
@@ -101,7 +100,14 @@ let setDecimal = () => {
 }
 
 let setNegative = () => {
-
+  if (screen.innerText.includes('-')) {
+    screen.innerText = screen.innerText.substring(1);
+    currentValue = screen.innerText;
+  }
+  else {
+    screen.innerText = "-" + screen.innerText;
+    currentValue = screen.innerText;
+  }
 }
 
 let setPercentage = () => {
