@@ -111,11 +111,8 @@ let setNegative = () => {
 }
 
 let setPercentage = () => {
-  if (!currentValue) {
-    return;
-  }
-  currentValue = (parseFloat(currentValue)/100).toString();
-  screen.innerText = currentValue;
+  screen.innerText = (parseFloat(screen.innerText)/100).toString();
+  currentValue = screen.innerText;
 }
 
 //Event listeners
