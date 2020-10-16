@@ -43,25 +43,31 @@ let updateScreen = (button) => {
 let updateScreenFontSize = () => {
   switch (true) {
     case screen.innerText.length < 6:
-      screen.style.fontSize = "60px";
+      screen.style.fontSize = "30vw";
       break;
     case screen.innerText.length == 6:
-      screen.style.fontSize = "56px";
+      screen.style.fontSize = "27vw";
       break;
     case screen.innerText.length == 7:
-      screen.style.fontSize = "52px";
+      screen.style.fontSize = "24vw";
       break;
     case screen.innerText.length == 8:
-      screen.style.fontSize = "48px";
+      screen.style.fontSize = "21vw";
       break;
     case screen.innerText.length >= 9:
-      screen.style.fontSize = "44px";
+      screen.style.fontSize = "19vw";
       break;
   }
 }
 
 let setOperator = (button) => {
   currentOperator = button.target.innerText;
+  if (currentOperator === "÷") {  //compensate for custom division sign
+    currentOperator = "/";
+  }
+  if (currentOperator === "x") {   //compensate for custom multiplication sign
+    currentOperator = "*";
+  }
   pendingValue = screen.innerText;
   currentValue = "";
   console.log("operator set")
