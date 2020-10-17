@@ -13,6 +13,9 @@ body, html {
 
 .calculator {
   background: black;
+  height: 100vh;
+  padding-top: 8vw;
+  padding-bottom: 3vw;
 }
 
 #screen {
@@ -21,8 +24,7 @@ body, html {
   align-items: flex-end;
   font-size: 30vw;
   color: white;
-  height: calc(100vh - 125vw);
-  padding: 4px;
+  /* height: calc(100vh - 125vw); */
   overflow: hidden;
 }
 
