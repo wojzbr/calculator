@@ -7,12 +7,12 @@
   font-family: 'Roboto', sans-serif;
 }
 
+body, html {
+  height: 100%;
+}
+
 .calculator {
-  /* width: 216px; */
   background: black;
-  border-radius: 5px;
-  /* margin-left: calc(50% - 108px);
-  margin-top: 10%; */
 }
 
 #screen {
@@ -61,3 +61,32 @@ button:active {
    color: white;
    background: orange;
  }
+
+ @media screen and (min-width: 500px) {
+  .calculator {
+    width: 360px;
+    background: black;
+    margin-left: calc(50% - 180px);
+    margin-top: 2%;
+    border-radius: 20px;
+  }
+  
+  #screen {
+    font-size: 90px;
+    height: 100px;
+    padding: 4px;
+  }
+  
+  button {
+    font-size: 35px;
+    width: 80px;
+    height: 80px;
+    margin: 5px;
+    border-radius: 50%;
+  }
+  
+  #zero {
+    width: 170px;
+    border-radius: 25%/50%;
+  }
+}
