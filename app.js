@@ -1,6 +1,17 @@
-//Variables
+//Elements
+
+let calculator = document.getElementById("calculator");
 
 let screen = document.getElementById("screen");
+
+let sizeUnit;
+
+  if (window.innerWidth > 500) {
+    sizeUnit = 300;
+  }
+  else {
+    sizeUnit = window.innerWidth;
+  }
 
 let buttons = document.getElementsByTagName("button");
 let numberButtons = document.getElementsByClassName("digit");
@@ -12,29 +23,33 @@ let negativeButton = document.getElementById('negative');
 let percentageButton = document.getElementById('percentage');
 let zeroButton = document.getElementById('zero');
 
+//Variables
+
 let pendingValue = "";
 let currentOperator = "";
 let currentValue = "0";
 
 screen.innerText = "0";
 
-let sizeUnit;
-
-if (window.innerWidth > 500) {
-  sizeUnit = 400;
-}
-else {
-  sizeUnit = window.innerWidth;
-}
 
 //Styling
 
-screen.style.height = `${window.innerHeight - (sizeUnit/4 * 5)}px`;
+calculator.style.width = `${sizeUnit}px`  //Make callculator full width on mobile or maximum of 300px width on bigger screens
+
+if (window.innerWidth <= 500) {           
+  screen.style.height = `${window.innerHeight - (sizeUnit/4 * 5)}px`;   //Make screen height the full remaining space above buttons
+}
+else {
+  screen.style.height = `${sizeUnit/3}px`;  //Make screen height smallet than the full remaining space above buttons if the device's screen is big
+  calculator.style.borderRadius = `${sizeUnit/50}px`; //give calculator some rounded corners on big screens
+}
+screen.style.fontSize = `${sizeUnit/4}px`
 
 for (i=0; i<buttons.length; i++){
   buttons[i].style.width = `${sizeUnit/4 - sizeUnit/50}px`;
   buttons[i].style.height = `${sizeUnit/4 - sizeUnit/50}px`;
   buttons[i].style.margin = `${sizeUnit/100}px`;
+  buttons[i].style.fontSize = `${sizeUnit/8}px`
 };
 
 zeroButton.style.width = `${sizeUnit/2 - sizeUnit/50}px`;
@@ -66,19 +81,19 @@ let updateScreen = (button) => {
 let updateScreenFontSize = () => {
   switch (true) {
     case screen.innerText.length < 6:
-      screen.style.fontSize = "30vw";
+      screen.style.fontSize = `${sizeUnit/4}px`
       break;
     case screen.innerText.length == 6:
-      screen.style.fontSize = "27vw";
+      screen.style.fontSize = `${sizeUnit/4.4}px`
       break;
     case screen.innerText.length == 7:
-      screen.style.fontSize = "24vw";
+      screen.style.fontSize = `${sizeUnit/4.8}px`
       break;
     case screen.innerText.length == 8:
-      screen.style.fontSize = "21vw";
+      screen.style.fontSize = `${sizeUnit/5.2}px`
       break;
     case screen.innerText.length >= 9:
-      screen.style.fontSize = "19vw";
+      screen.style.fontSize = `${sizeUnit/5.6}px`
       break;
   }
 }
@@ -101,6 +116,7 @@ let clear = () => {
   currentValue = "";
   currentOperator = "";
   screen.innerText = "0";
+  screen.style.fontSize = `${sizeUnit/4}px`
 }
 
 let equals = () => {

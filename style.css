@@ -7,7 +7,7 @@
   font-family: 'Roboto', sans-serif;
 }
 
-.calculator {
+#calculator {
   background: black;
 }
 
@@ -47,4 +47,12 @@ button:active {
  .orange {
    color: white;
    background: orange;
+ }
+
+ @media screen and (min-width: 500px) {
+   #calculator {
+     position: relative;
+     left: calc(50% - 150px);
+     top: 30px;
+   }
  }
