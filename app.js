@@ -2,6 +2,7 @@
 
 let screen = document.getElementById("screen");
 
+let buttons = document.getElementsByTagName("button");
 let numberButtons = document.getElementsByClassName("digit");
 let operatorButtons = document.getElementsByClassName("operator");
 let equalsButton = document.getElementById("equals");
@@ -9,12 +10,34 @@ let clearButton = document.getElementById('clear');
 let decimalButton = document.getElementById('decimal');
 let negativeButton = document.getElementById('negative');
 let percentageButton = document.getElementById('percentage');
+let zeroButton = document.getElementById('zero');
 
 let pendingValue = "";
 let currentOperator = "";
 let currentValue = "0";
 
 screen.innerText = "0";
+
+let sizeUnit;
+
+if (window.innerWidth > 500) {
+  sizeUnit = 400;
+}
+else {
+  sizeUnit = window.innerWidth;
+}
+
+//Styling
+
+screen.style.height = `${window.innerHeight - (sizeUnit/4 * 5)}px`;
+
+for (i=0; i<buttons.length; i++){
+  buttons[i].style.width = `${sizeUnit/4 - sizeUnit/50}px`;
+  buttons[i].style.height = `${sizeUnit/4 - sizeUnit/50}px`;
+  buttons[i].style.margin = `${sizeUnit/100}px`;
+};
+
+zeroButton.style.width = `${sizeUnit/2 - sizeUnit/50}px`;
 
 //Callback functions
 
